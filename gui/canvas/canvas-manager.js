@@ -71,6 +71,7 @@ CanvasManager.onMouseMove = function(callback) {
     this.canvas.addEventListener('mousemove', callback);
 };
 
+/*
 CanvasManager.onMouseUp = function(callback) {
     var listener = {
 
@@ -85,3 +86,4 @@ CanvasManager.onMouseUp = function(callback) {
     listener.canvas = this.canvas;
     this.canvas.addEventListener('mouseup', listener.handleEvent);
 };
+*/
