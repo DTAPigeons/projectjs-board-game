@@ -18,8 +18,8 @@ CanvasManager.addShape = function(element) {
     this.tileLayerShapeCollection.push(element);
 };
 
-CanvasManager.addPawn = function(pawn){
-    this.pawnLayerShapeCollection.push(pawn);
+CanvasManager.addPawn = function(pawnImage){
+    this.pawnLayerShapeCollection.push(pawnImage);
 }
 
 CanvasManager.render = function() {
@@ -37,20 +37,27 @@ CanvasManager.render = function() {
     }
 };
 
-CanvasManager.onMouseDown = function(callback) {
-
+CanvasManager.creatEventListener = function(callback){
     var listener = {
 
         toCall: function(){},
         canvas: null,
-        handleEvent: function(){
-            toCall();
-            canvas.removeEventListener('mousedown', listener.handleEvent)
-        }
+        handleEvent: function(){}
 
     }
     listener.toCall = callback;
     listener.canvas = this.canvas;
+    listener.handleEvent = function(){
+        listener.toCall();
+        listener.canvas.removeEventListener('mousedown', listener.handleEvent);
+    }
+
+    return listener;
+}
+
+CanvasManager.onMouseDown = function(callback) {
+
+    var listener = this.creatEventListener(callback)
     this.canvas.addEventListener('mousedown', listener.handleEvent);
 }
 
@@ -67,7 +74,7 @@ CanvasManager.onMouseMove = function(callback) {
 CanvasManager.onMouseUp = function(callback) {
     var listener = {
 
-        toCall: function(){},
+        toCall: function(){callback()},
         canvas: null,
         handleEvent: function(){
             toCall();
@@ -75,7 +82,6 @@ CanvasManager.onMouseUp = function(callback) {
         }
 
     }
-    listener.toCall = callback;
     listener.canvas = this.canvas;
     this.canvas.addEventListener('mouseup', listener.handleEvent);
 };

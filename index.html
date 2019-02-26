@@ -7,16 +7,37 @@
         <title>Document</title>
     </head>
     <body>
-
         <canvas id="canvas" width="900" height="700"
-        style="border: solid 1px #ff0000"></canvas>
+        style="border: solid 1px #050505"></canvas>
+
+        <div id="ui" style="float: right;">       
+            <table id="placer-ui" style="border: 1px solid black;">
+            <tr>
+                <th id="knight-number">0</th>
+                <th id="elf-number">0</th>
+                <th id="dwarf-number">0</th>
+            </tr>
+            <tr>
+                <td><img id="knight-img" src="sprites/knight.jpg" alt="knight" style="width:90px;height:90px;"></td>
+                <td><img src="sprites/elf.jpg" alt="elf" style="width:90px;height:90px;"></td> 
+                <td><img src="sprites/dwarf.png" alt="dwarf" style="width:90px;height:90px;"></td>
+            </tr>
+            <tr style="text-align: center">
+                <td><button id="knight-button" type="button">Click Me!</button></td>
+                <td><button id="elf-button" type="button">Click Me!</button></td> 
+                <td><button id="dwarf-button" type="button">Click Me!</button></td>
+            </tr>
+        </table></div>
 
         <!-- All script -->
         <script src="gui/canvas/canvas-manager.js"></script>
         <script src="gui/canvas/map-renderer.js"></script>           
-        <script src="gui/canvas/tile-shape.js"></script>       
+        <script src="gui/canvas/tile-shape.js"></script>
+        <script src="gui/canvas/pawn-image.js"></script>
+        <script src="gui/sidebar/placer.js"></script>        
         <script src="combat/map.js"></script>
         <script src="combat/tile.js"></script>
+        <script src="combat/pawn.js"></script>
         <script src="game-manager.js"></script>
     </body>
 </html>

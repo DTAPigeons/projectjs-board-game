@@ -15,7 +15,7 @@ Pawn.prototype.occupyTile= function(tile){
     tile.occupy(this);
 }
 Pawn.prototype.initializeImage = function(){
-    if(imageSrc!=null){
-        image = new PawnImage(this.tileOccupied.x,this.tileOccupied.y,this.imageSrc);
+    if(this.imageSrc!=null){
+        this.image = new PawnImage(this.tileOccupied.x,this.tileOccupied.y,this.imageSrc);
     }
 }

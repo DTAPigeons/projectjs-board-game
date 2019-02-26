@@ -20,3 +20,13 @@ MapRenderer.getMapToCanvasCoordinates = function(mapX, mapY){
 
     return coordinates;
 }
+
+MapRenderer.getTileOfMousePosition = function(){
+    var mousePosition = CanvasManager.currentMousePosition;
+    var coordinates = {
+        x:Math.floor(mousePosition.x/100),
+        y:Math.floor(mousePosition.y/100)
+    };
+    
+    return Map.tiles[coordinates.x][coordinates.y];
+}

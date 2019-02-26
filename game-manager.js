@@ -1,5 +1,13 @@
 var canvas = document.getElementById("canvas");
-var map = new Map(9,7);
+Map.initialize(9,7);
 CanvasManager.initialize("canvas");
-MapRenderer.initialize(map);
+MapRenderer.initialize();
+Map.setUpPhase(false);
+Placer.initialize();
 CanvasManager.render();
+
+var update = function(){
+    CanvasManager.render();
+}
+
+var interval = setInterval(update, 100);
