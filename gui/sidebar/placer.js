@@ -24,7 +24,7 @@ var PlayerPawns = function(playerIndex, knightImage = null, dwarfImage = null, e
     this.dwarfs.push(new Pawn(12,6,2,2,2,playerIndex, dwarfImage));
     this.dwarfs.push(new Pawn(12,6,2,2,2,playerIndex, dwarfImage));
 
-    this.hasPawns = (this.knights.lenght>0) || (this.elfs.lenght>0) || (this.dwarfs.lenght>0)
+    this.hasPawns = function(){ return (this.knights.length>0) || (this.elfs.length>0) || (this.dwarfs.length>0);}
 }
 
 Placer.initialize = function(placerId){
@@ -37,13 +37,19 @@ Placer.initialize = function(placerId){
     this.dwarfButton = document.getElementById("dwarf-button");
     this.playerOnePawns = new PlayerPawns(1, document.getElementById("knight-img"),document.getElementById("dwarf-img"),document.getElementById("elf-img"));
     this.playerTwoPawns = new PlayerPawns(2, document.getElementById("knight-img"),document.getElementById("dwarf-img"),document.getElementById("elf-img"));
-    Placer.initializeForPlayer(true);
+    Placer.initializeForPlayer();
 }
 
 
 
 Placer.initializeForPlayer = function(){
     var currentPlayer = this.isPlayerOne ? this.playerOnePawns : this.playerTwoPawns;
+    var startCombat = !currentPlayer.hasPawns()
+    if(startCombat){
+        Map.startCombat();
+        return;
+    }
+    Map.setUpPhase(this.isPlayerOne);
     this.knightCount.innerText = currentPlayer.knights.length;
     this.elfCount.innerText = currentPlayer.elfs.length;
     this.dwarfCount.innerText = currentPlayer.dwarfs.length;
@@ -54,7 +60,6 @@ Placer.initializeForPlayer = function(){
 
 Placer.selectPawn = function(pawnCollection){
     if(pawnCollection.lenght<=0){return;}
-    currentPawn = pawnCollection.pop();
     var placePawnEvent = {};
     placePawnEvent.toCall = this.placePawn;
     placePawnEvent.pawnCollection = pawnCollection;
@@ -67,11 +72,12 @@ Placer.selectPawn = function(pawnCollection){
 Placer.placePawn = function(pawnCollection){
     var tile = MapRenderer.getTileOfMousePosition();
     if(tile.state!="castle"){
-        pawnCollection.push(currentPawn);
         return;
     }
+    currentPawn = pawnCollection.pop();
     currentPawn.occupyTile(tile);
     currentPawn.initializeImage();
     CanvasManager.addPawn(currentPawn.image);
-    this.isPlayerOne = !this.isPlayerOne;
+    Placer.isPlayerOne = !Placer.isPlayerOne;
+    Placer.initializeForPlayer();
 }

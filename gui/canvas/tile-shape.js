@@ -20,7 +20,7 @@ TileShape.prototype.updateColor = function(color){
 }
 
 TileShape.prototype.tileDefault = function(){
-    this.updateColor(this.defaultColor);
+    this.updateColor(this.defaultTileColor);
 }
 
 TileShape.prototype.tileCastle = function(){

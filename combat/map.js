@@ -36,6 +36,7 @@ Map.startCombat = function(maxObsticles=5){
     var numberOfObsticles = 0;
     for(var i = 0; i < this.width; i++){        
         for(var j = 0; j < this.height; j++){
+            this.tiles[i][j].default();
             var isPlayerRow =(j<this.playerRows) || (j>=this.height-this.playerRows);
             if(!isPlayerRow && numberOfObsticles<maxObsticles){
                 var rand = Math.floor(Math.random() * 10);

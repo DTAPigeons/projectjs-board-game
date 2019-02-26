@@ -3,6 +3,7 @@ var CanvasManager = {};
 CanvasManager.canvas    = null; 
 CanvasManager.context   = null;
 CanvasManager.currentMousePosition   = {x:0,y:0};
+CanvasManager.currentMouseDownListener = null;
 
 CanvasManager.initialize = function(element) {
     this.canvas = document.getElementById(element);
@@ -50,14 +51,18 @@ CanvasManager.creatEventListener = function(callback){
     listener.handleEvent = function(){
         listener.toCall();
         listener.canvas.removeEventListener('mousedown', listener.handleEvent);
+        CanvasManager.currentMouseDownListener = null;
     }
 
     return listener;
 }
 
 CanvasManager.onMouseDown = function(callback) {
-
-    var listener = this.creatEventListener(callback)
+    if(this.currentMouseDownListener!=null){
+        this.canvas.removeEventListener('mousedown', this.currentMouseDownListener);
+    }
+    var listener = this.creatEventListener(callback);
+    this.currentMouseDownListener = listener.handleEvent;
     this.canvas.addEventListener('mousedown', listener.handleEvent);
 }
 
