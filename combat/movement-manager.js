@@ -10,5 +10,6 @@ MovementManager.enter = function(pawn){
 MovementManager.movePawn = function(newTile){
     if(MovementManager.currentPawn==null){throw "No pawn selected";}
     MovementManager.currentPawn.occupyTile(newTile);
+    CombatManager.turnEnded(MovementManager.currentPawn.playerOwner);
     MovementManager.currentPawn = null;
 }

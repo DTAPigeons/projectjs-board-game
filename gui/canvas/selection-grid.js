@@ -35,11 +35,10 @@ SelectionGrid.show = function(area, toExecute){
     listener.overlayArea = new OverlayArea(area);
     listener.handleEvent = function(){
         var tile = listener.overlayArea.getmouseOnTile();
+        CanvasManager.clearOverlay();
         if(tile!=null){
             listener.toCall(tile);           
         }
-
-        CanvasManager.clearOverlay();
     }
 
     CanvasManager.onMouseDown(listener.handleEvent);

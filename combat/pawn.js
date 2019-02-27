@@ -26,7 +26,7 @@ Pawn.prototype.initializeImage = function(){
 }
 
 Pawn.prototype.takeDamage = function(damage){
-    var damageTaken = damage- this.defence;
+    var damageTaken = damage - this.defence;
 
     var diceOne = Math.floor(Math.random() * 6)+1;
     var diceTwo = Math.floor(Math.random() * 6)+1;
@@ -36,6 +36,8 @@ Pawn.prototype.takeDamage = function(damage){
     if(diceOne+diceTwo+diceThree==3) {damageTaken =  Math.floor(damageTaken/2);}
 
     this.hitPoints -=damageTaken;
+
+    CombatManager.pawnTookDamage(this.playerOwner,damageTaken);
 
     console.log(damageTaken+ " " + this.hitPoints);
 
@@ -49,4 +51,5 @@ Pawn.prototype.die = function(){
     this.tileOccupied.default();
     CanvasManager.addPawn(this.image);
     if(this.image!=null){this.image.show = false;}
+    CombatManager.pawnDied(this.playerOwner);
 }

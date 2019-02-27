@@ -2,7 +2,7 @@ var AttackManager = {}
 AttackManager.currentPawn = null;
 
 AttackManager.enter = function(pawn){
-    this.currentPawn = pawn;
+    AttackManager.currentPawn = pawn;
     if(!AttackManager.canAttack(pawn)){
         return;
     }
@@ -18,7 +18,7 @@ AttackManager.generateAttackArea = function(pawn){
 }
 
 AttackManager.canAttack = function(pawn){
-    var attackArea = this.generateAttackArea(pawn);
+    var attackArea = AttackManager.generateAttackArea(pawn);
     var isValidTarget = function(tile) { return tile.occupant!=null && tile.occupant.playerOwner!=pawn.playerOwner }
     var enemyIndex = attackArea.findIndex(isValidTarget);
 
@@ -26,8 +26,12 @@ AttackManager.canAttack = function(pawn){
 }
 
 AttackManager.attackTarget = function(tile){
-    if(currentPawn==null){ return;}
+    if(AttackManager.currentPawn==null){ return;}
     if(tile.occupant==null){ return;}
     
-    tile.occupant.takeDamage(currentPawn.damage);
+    tile.occupant.takeDamage(AttackManager.currentPawn.damage);
+
+    CombatManager.turnEnded(AttackManager.currentPawn.playerOwner);
+
+    AttackManager.currentPawn = null;
 }

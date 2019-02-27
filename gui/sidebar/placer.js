@@ -47,7 +47,7 @@ Placer.initializeForPlayer = function(){
     var currentPlayer = this.isPlayerOne ? this.playerOnePawns : this.playerTwoPawns;
     var startCombat = !currentPlayer.hasPawns()
     if(startCombat){
-        Map.startCombat();
+        CombatManager.startCombat();
         this.placerElement.style.visibility = "hidden";
         return;
     }
@@ -79,6 +79,12 @@ Placer.placePawn = function(pawnCollection){
     currentPawn = pawnCollection.pop();
     currentPawn.occupyTile(tile);
     currentPawn.initializeImage();
+    if(Placer.isPlayerOne){
+        CombatManager.playerPawns[1]++;
+    }
+    else{
+        CombatManager.playerPawns[2]++;
+    }
  //   CanvasManager.addPawn(currentPawn.image);
     Placer.isPlayerOne = !Placer.isPlayerOne;
     Placer.initializeForPlayer();
