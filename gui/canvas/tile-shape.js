@@ -11,7 +11,7 @@ var TileShape = function(x, y, color = "white", width = 100, height = 100, borde
     this.height = height;
     this.color = color;
     this.border = border;
-
+    
     this.name   = null;
 };
 

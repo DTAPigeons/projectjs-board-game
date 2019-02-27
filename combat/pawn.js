@@ -24,3 +24,29 @@ Pawn.prototype.initializeImage = function(){
         CanvasManager.addPawn(this.image);
     }
 }
+
+Pawn.prototype.takeDamage = function(damage){
+    var damageTaken = damage- this.defence;
+
+    var diceOne = Math.floor(Math.random() * 6)+1;
+    var diceTwo = Math.floor(Math.random() * 6)+1;
+    var diceThree = Math.floor(Math.random() * 6)+1;
+
+    if(diceOne+diceTwo+diceThree==this.hitPoints) {damageTaken =  0;}
+    if(diceOne+diceTwo+diceThree==3) {damageTaken =  Math.floor(damageTaken/2);}
+
+    this.hitPoints -=damageTaken;
+
+    console.log(damageTaken+ " " + this.hitPoints);
+
+    if(this.hitPoints<=0){
+        this.die();
+    }
+
+}
+
+Pawn.prototype.die = function(){
+    this.tileOccupied.default();
+    CanvasManager.addPawn(this.image);
+    if(this.image!=null){this.image.show = false;}
+}

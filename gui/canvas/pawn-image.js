@@ -11,9 +11,10 @@ var PawnImage = function(x,y, source) {
     this.height = 90;
     this.source   = source;
     this.image = source;
+    this.show = true;
 };
 
 PawnImage.prototype.render = function(context){
+    if(!this.show){return;}
     context.drawImage(this.image,this.x,this.y,this.width,this.height);
 }
-

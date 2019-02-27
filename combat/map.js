@@ -63,3 +63,104 @@ Map.getNeighboursOfTile = function(tile){
     if(neighbours.length>0) {return neighbours;}
 }
 
+Map.getAttackArea = function(startx,starty, range){
+    var area = [];
+    var i = startx+1;
+    while(i<=startx+range){
+        if(i>=this.width) break;
+        var newTile = this.tiles[i][starty];
+        area.push(newTile);
+        i++;
+        if(newTile.occupant!=null){
+            if(newTile.occupant.playerOwner==0 && range==3){continue;}
+            else{break;}
+        }
+
+    }
+
+    var j = startx-1;
+
+    while(j>=startx-range){
+        if(j<0) break;
+        var newTile = this.tiles[j][starty];
+        area.push(newTile);
+        j--;
+        if(newTile.occupant!=null){
+            if(newTile.occupant.playerOwner==0 && range==3){continue;}
+            else{break;}
+        }
+
+
+    }
+
+    var k = starty+1;
+
+    while(k<=starty+range){
+        if(k>=this.height) break;
+        var newTile = this.tiles[startx][k];
+        area.push(newTile);
+        k++;
+        if(newTile.occupant!=null){
+            if(newTile.occupant.playerOwner==0 && range==3){continue;}
+            else{break;}
+        }
+
+    }
+
+    var m = starty-1;
+
+    while(m>=starty-range){
+        if(m<0) break;
+        var newTile = this.tiles[startx][m];
+        area.push(newTile);
+        
+        m--;
+        if(newTile.occupant!=null){
+            if(newTile.occupant.playerOwner==0 && range==3){continue;}
+            else{break;}
+        }
+
+    }
+
+
+    /*
+    for(var i=startx; i>=startx+range;i++){
+        if(i>this.height) break;
+        var newTile = this.tiles[i][starty];
+        area.push(newTile);
+        if(newTile.occupant!=null){
+            if(newTile.occupant.playerOwner==0 && range==3){continue;}
+            else{break;}
+        }
+    }
+    for(var i=startx; i<=startx-range;i--){
+        if(i<0) break;
+        var newTile = this.tiles[i][starty];
+        area.push(newTile);
+        if(newTile.occupant!=null){
+            if(newTile.occupant.playerOwner==0 && range==3){continue;}
+            else{break;}
+        }
+    }
+    for(var i=starty; i>=starty+range;i++){
+        if(i>this.width) break;
+        var newTile = this.tiles[startx][i];
+        area.push(newTile);
+        if(newTile.occupant!=null){
+            if(newTile.occupant.playerOwner==0 && range==3){continue;}
+            else{break;}
+        }
+    }
+    for(var i=starty; i<=starty-range;i--){
+        if(i<0) break;
+        var newTile = this.tiles[startx][i];
+        area.push(newTile);
+        if(newTile.occupant!=null){
+            if(newTile.occupant.playerOwner==0 && range==3){continue;}
+            else{break;}
+        }
+    }
+*/
+    return area;
+}
+

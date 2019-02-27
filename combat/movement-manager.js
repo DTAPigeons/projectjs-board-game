@@ -8,7 +8,7 @@ MovementManager.enter = function(pawn){
 }
 
 MovementManager.movePawn = function(newTile){
-    if(MovementManager.currentPawn==null){return;}
+    if(MovementManager.currentPawn==null){throw "No pawn selected";}
     MovementManager.currentPawn.occupyTile(newTile);
     MovementManager.currentPawn = null;
 }

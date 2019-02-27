@@ -43,6 +43,8 @@ Selector.setActionbar = function(pawn){
 Selector.setActionbarForCurrentPlayer = function(pawn){
     var selectMove = Selector.creatPawnListener(pawn, MovementManager.enter);
     Selector.moveButton.addEventListener('click', selectMove);
+    var selectAttack = Selector.creatPawnListener(pawn, AttackManager.enter);
+    Selector.attackButton.addEventListener('click', selectAttack);
 }
 
 Selector.creatPawnListener = function(pawn, toCall){

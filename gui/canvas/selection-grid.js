@@ -19,6 +19,7 @@ var OverlayArea = function(areaToOverlay){
         overlayItem.tile = tile;
         overlayItem.shape = newShape;
         this.overlay.push(overlayItem);
+        if(tile.occupant!=null && tile.occupant.playerOwner==0) return;
         CanvasManager.addToOverlay(newShape);
     });
 }
