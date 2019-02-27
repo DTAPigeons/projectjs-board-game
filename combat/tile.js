@@ -16,6 +16,7 @@ Tile.prototype.invalid = function(){
 
 Tile.prototype.default = function(){
     this.state = "default";
+    this.occupant = null;
     this.shape.tileDefault();
 }
 
@@ -30,3 +31,6 @@ Tile.prototype.occupy = function(occupant){
     this.shape.tileOccupied(occupant);
 }
 
+Tile.prototype.occupied = function(){
+    return this.occupant!=null;
+}

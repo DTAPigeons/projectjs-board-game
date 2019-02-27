@@ -13,11 +13,20 @@ CanvasManager.initialize = function(element) {
 
 // Contains all shapes of the canvas application
 CanvasManager.tileLayerShapeCollection = [];
+CanvasManager.overlayLayerShapeCollection = [];
 CanvasManager.pawnLayerShapeCollection = [];
 
 CanvasManager.addShape = function(element) {
     this.tileLayerShapeCollection.push(element);
 };
+
+CanvasManager.addToOverlay = function(element){
+    this.overlayLayerShapeCollection.push(element);
+}
+
+CanvasManager.clearOverlay = function(){
+    this.overlayLayerShapeCollection = [];
+}
 
 CanvasManager.addPawn = function(pawnImage){
     this.pawnLayerShapeCollection.push(pawnImage);
@@ -28,11 +37,17 @@ CanvasManager.render = function() {
     // clear canvas container 
     this.context.clearRect(0,0, this.canvas.width, this.canvas.height);
 
-    // render shape objects 
+    // render tiles 
     for(var i = 0; i < this.tileLayerShapeCollection.length; i++) {
         this.tileLayerShapeCollection[i].render(this.context);
     }
 
+    // render overlay
+    for(var i = 0; i < this.overlayLayerShapeCollection.length; i++) {
+        this.overlayLayerShapeCollection[i].render(this.context);
+    }
+
+    // render pawns objects
     for(var i = 0; i < this.pawnLayerShapeCollection.length; i++) {
         this.pawnLayerShapeCollection[i].render(this.context);
     }

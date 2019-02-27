@@ -51,3 +51,15 @@ Map.startCombat = function(maxObsticles=5){
     }
 }
 
+Map.getNeighboursOfTile = function(tile){
+    var x = tile.x;
+    var y = tile.y;
+    var neighbours = [];
+    if(x-1>=0 && this.tiles[x-1][y]!=null){ neighbours.push(this.tiles[x-1][y]);}
+    if(y-1>=0 && this.tiles[x][y-1]!=null){ neighbours.push(this.tiles[x][y-1]);}
+    if(x+1<this.width && this.tiles[x+1][y]!=null){ neighbours.push(this.tiles[x+1][y]);}
+    if(y+1<this.height && this.tiles[x][y+1]!=null){ neighbours.push(this.tiles[x][y+1]);}
+
+    if(neighbours.length>0) {return neighbours;}
+}
+

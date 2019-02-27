@@ -11,11 +11,16 @@ var Pawn = function(hitPoints=1,damage=0,defence=0,range=0,speed=0,playerOwner =
 }
 
 Pawn.prototype.occupyTile= function(tile){
+    if(this.tileOccupied!=null){ this.tileOccupied.default(); }
     this.tileOccupied = tile;
     tile.occupy(this);
+    if(this.image!=null){ this.image.moved(tile.x,tile.y); }
 }
+
+
 Pawn.prototype.initializeImage = function(){
     if(this.imageSrc!=null){
         this.image = new PawnImage(this.tileOccupied.x,this.tileOccupied.y,this.imageSrc);
+        CanvasManager.addPawn(this.image);
     }
 }

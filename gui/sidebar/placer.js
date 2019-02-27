@@ -38,6 +38,7 @@ Placer.initialize = function(placerId){
     this.playerOnePawns = new PlayerPawns(1, document.getElementById("knight-img"),document.getElementById("dwarf-img"),document.getElementById("elf-img"));
     this.playerTwoPawns = new PlayerPawns(2, document.getElementById("knight-img"),document.getElementById("dwarf-img"),document.getElementById("elf-img"));
     Placer.initializeForPlayer();
+    this.placerElement.style.visibility = "visible";
 }
 
 
@@ -47,6 +48,7 @@ Placer.initializeForPlayer = function(){
     var startCombat = !currentPlayer.hasPawns()
     if(startCombat){
         Map.startCombat();
+        this.placerElement.style.visibility = "hidden";
         return;
     }
     Map.setUpPhase(this.isPlayerOne);
@@ -77,7 +79,7 @@ Placer.placePawn = function(pawnCollection){
     currentPawn = pawnCollection.pop();
     currentPawn.occupyTile(tile);
     currentPawn.initializeImage();
-    CanvasManager.addPawn(currentPawn.image);
+ //   CanvasManager.addPawn(currentPawn.image);
     Placer.isPlayerOne = !Placer.isPlayerOne;
     Placer.initializeForPlayer();
 }

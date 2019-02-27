@@ -1,4 +1,4 @@
-var TileShape = function(x, y, color = "white", border = "black") {
+var TileShape = function(x, y, color = "white", width = 100, height = 100, border = "black") {
     this.castleColor = "#8a8a8e";
     this.blockedTileColor = "black";
     this.playerOneColor = "yellow";
@@ -7,8 +7,8 @@ var TileShape = function(x, y, color = "white", border = "black") {
     this.invalidTileColor= "red";
     this.x = x;
     this.y = y;
-    this.width = 100;
-    this.height = 100;
+    this.width = width;
+    this.height = height;
     this.color = color;
     this.border = border;
 

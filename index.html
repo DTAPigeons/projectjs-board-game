@@ -10,8 +10,8 @@
         <canvas id="canvas" width="900" height="700"
         style="border: solid 1px #050505"></canvas>
 
-        <div id="ui" style="float: right;">       
-            <table id="placer-ui" style="border: 1px solid black;">
+        <div id="ui" style="float: right;">        
+            <table id="placer-ui" style="border: 1px solid black; visibility: hidden;">
             <tr>
                 <th id="knight-number">0</th>
                 <th id="elf-number">0</th>
@@ -27,16 +27,30 @@
                 <td><button id="elf-button" type="button">Click Me!</button></td> 
                 <td><button id="dwarf-button" type="button">Click Me!</button></td>
             </tr>
-        </table></div>
+        
+        </table>
+        <table id="actionbar-ui" style="border: 1px solid black; margin-top: 100px; margin-bottom: 100px; visibility: hidden;">
+            <tr style="text-align: center">
+                <td><button id="move-button" type="button">Move</button></td>
+                <td><button id="attack-button" type="button">Attack</button></td> 
+                <td><button id="heal-button" type="button">Heal</button></td>
+                <td><button id="unselect-button" type="button">Unselect</button></td>
+            </tr>
+        </table>
+    </div>
 
         <!-- All script -->
         <script src="gui/canvas/canvas-manager.js"></script>
+        <script src="gui/canvas/selection-grid.js"></script>
         <script src="gui/canvas/map-renderer.js"></script>           
         <script src="gui/canvas/tile-shape.js"></script>
         <script src="gui/canvas/pawn-image.js"></script>
-        <script src="gui/sidebar/placer.js"></script>        
+        <script src="gui/sidebar/placer.js"></script>
+        <script src="gui/sidebar/selector.js"></script>         
         <script src="combat/map.js"></script>
         <script src="combat/tile.js"></script>
+        <script src="combat/movement-manager.js"></script>
+        <script src="combat/path-finding.js"></script>
         <script src="combat/pawn.js"></script>
         <script src="game-manager.js"></script>
     </body>
