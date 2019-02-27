@@ -55,9 +55,20 @@ Placer.initializeForPlayer = function(){
     this.knightCount.innerText = currentPlayer.knights.length;
     this.elfCount.innerText = currentPlayer.elfs.length;
     this.dwarfCount.innerText = currentPlayer.dwarfs.length;
-    this.knightButton.addEventListener('click', function(){Placer.selectPawn(currentPlayer.knights)})
-    this.elfButton.addEventListener('click', function(){Placer.selectPawn(currentPlayer.elfs)})
-    this.dwarfButton.addEventListener('click', function(){Placer.selectPawn(currentPlayer.dwarfs)})
+    if(currentPlayer.knights.length==0){ this.knightButton.disabled = true;}
+    else {
+        this.knightButton.disabled = false;
+        this.knightButton.addEventListener('click', function(){Placer.selectPawn(currentPlayer.knights)})
+    }
+    if(currentPlayer.elfs.length==0){ this.elfButton.disabled = true;}
+    else {
+        this.knightButton.disabled = false;
+        this.elfButton.addEventListener('click', function(){Placer.selectPawn(currentPlayer.elfs)})
+    }
+    if(currentPlayer.dwarfs.lenght==0){ this.dwarfButton.disabled = true;}
+    else{
+        this.dwarfButton.disabled = false;
+        this.dwarfButton.addEventListener('click', function(){Placer.selectPawn(currentPlayer.dwarfs)})}
 }
 
 Placer.selectPawn = function(pawnCollection){
@@ -85,7 +96,6 @@ Placer.placePawn = function(pawnCollection){
     else{
         CombatManager.playerPawns[2]++;
     }
- //   CanvasManager.addPawn(currentPawn.image);
     Placer.isPlayerOne = !Placer.isPlayerOne;
     Placer.initializeForPlayer();
 }

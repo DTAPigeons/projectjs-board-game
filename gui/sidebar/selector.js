@@ -63,13 +63,13 @@ Selector.setActionbarForCurrentPlayer = function(pawn){
     var selectMove = Selector.creatPawnListener(pawn, MovementManager.enter);
     Selector.moveButton.addEventListener('click', selectMove);
     var selectAttack = Selector.creatPawnListener(pawn, AttackManager.enter);
-    if(!AttackManager.canAttack(pawn)){
-        Selector.attackButton.disabled = true;
-        return;
-    
-    }
     Selector.attackButton.disabled = false;
     Selector.attackButton.addEventListener('click', selectAttack);
+    if(!AttackManager.canAttack(pawn)){
+        Selector.attackButton.disabled = true;    
+    }
+    Selector.healButton.disabled = false;
+    Selector.healButton.addEventListener('click', pawn.heal);
 }
 
 Selector.creatPawnListener = function(pawn, toCall){

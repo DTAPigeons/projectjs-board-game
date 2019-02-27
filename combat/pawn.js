@@ -53,3 +53,12 @@ Pawn.prototype.die = function(){
     if(this.image!=null){this.image.show = false;}
     CombatManager.pawnDied(this.playerOwner);
 }
+
+Pawn.prototype.heal = function(){
+    var healAmount =  Math.floor(Math.random() * 6)+1;
+    this.hitPoints+=healAmount;
+    var rand = Math.random();
+    var continueTurn = Math.floor(rand * 2);
+    if(!continueTurn) { CombatManager.turnEnded();}
+    else{  Selector.initializeForPlayer(this.playerOwner)}
+}
