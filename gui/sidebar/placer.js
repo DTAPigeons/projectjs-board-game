@@ -62,7 +62,7 @@ Placer.initializeForPlayer = function(){
     }
     if(currentPlayer.elfs.length==0){ this.elfButton.disabled = true;}
     else {
-        this.knightButton.disabled = false;
+        this.elfButton.disabled = false;
         this.elfButton.addEventListener('click', function(){Placer.selectPawn(currentPlayer.elfs)})
     }
     if(currentPlayer.dwarfs.lenght==0){ this.dwarfButton.disabled = true;}
